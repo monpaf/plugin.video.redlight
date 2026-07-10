@@ -341,6 +341,13 @@ class RedLightMonitor(Monitor):
 		except Exception as e: kodi_utils.logger('AutoStart', str(e))
 		_start_daemon(lambda: ServiceExpiryAlerts().run(self))
 
+		# Fork self-update hook (upstream removed its update system). Kept self-contained
+		# in modules.updater and started last, so it survives upstream churn of this method.
+		try:
+			from modules.updater import run_update_service
+			_start_daemon(lambda: run_update_service())
+		except Exception as e: kodi_utils.logger('UpdateCheck', str(e))
+
 	def onNotification(self, sender, method, data):
 		if method in ('GUI.OnScreensaverActivated', 'System.OnSleep'):
 			kodi_utils.set_property(pause_services_prop, 'true')
