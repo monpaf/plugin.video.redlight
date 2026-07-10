@@ -283,7 +283,7 @@ class SourcesResults(BaseDialog):
 						provider_icon = self.get_provider_and_path('nzb')[1]
 						hoster_label = '[B]CACHED[/B]' if get('nzb_cached') else 'TORBOX'
 					else:
-						source_site = source.upper()
+						source_site = (get('source_site') or source).upper()
 						provider, provider_icon = self.get_provider_and_path(source.lower())
 						hoster_label = 'DIRECT'
 					if highlight_type == 0: key = source.lower() if scrape_provider in ('aiostreams', 'nzb') else provider

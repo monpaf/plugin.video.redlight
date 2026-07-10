@@ -469,6 +469,11 @@ def personal_lists_unseen_highlight():
 def personal_lists_show_author():
 	return get_setting('redlight.personal_list.show_author', 'true') == 'true'
 
+def lumio_active():
+	if get_setting('redlight.provider.lumio', 'false') != 'true': return False
+	from apis import lumio_api
+	return bool(lumio_api.base_url())
+
 def show_specials():
 	return get_setting('redlight.show_specials', 'false') == 'true'
 
@@ -582,7 +587,7 @@ def tv_progress_location():
 
 def check_prescrape_sources(scraper, media_type):
 	"""Prescrape only when Check Before Full Search is enabled for that provider."""
-	if scraper in ('easynews', 'aiostreams', 'nzb', 'rd_cloud', 'pm_cloud', 'ad_cloud', 'oc_cloud', 'tb_cloud'):
+	if scraper in ('easynews', 'aiostreams', 'lumio', 'nzb', 'rd_cloud', 'pm_cloud', 'ad_cloud', 'oc_cloud', 'tb_cloud'):
 		return get_setting('redlight.check.%s' % scraper) == 'true'
 	if scraper == 'folders':
 		return get_setting('redlight.check.folders') == 'true'
@@ -892,6 +897,7 @@ def active_internal_scrapers():
 	active = [i.split('.')[1] for i in settings if get_setting('redlight.%s' % i) == 'true']
 	if aiostreams_active(): active.append('aiostreams')
 	if nzb_scrape_active(): active.append('nzb')
+	if lumio_active(): active.append('lumio')
 	return active
 
 def provider_sort_ranks():

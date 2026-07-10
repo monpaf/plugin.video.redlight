@@ -1217,6 +1217,11 @@ def default_settings():
 {'setting_id': 'autoplay.aiostreams', 'setting_type': 'boolean', 'setting_default': 'false'},
 {'setting_id': 'aio.priority', 'setting_type': 'action', 'setting_default': '7', 'min_value': '1', 'max_value': '10'},
 {'setting_id': 'provider.aiostreams_highlight', 'setting_type': 'string', 'setting_default': 'FF00D4FF'},
+{'setting_id': 'provider.lumio', 'setting_type': 'boolean', 'setting_default': 'false'},
+{'setting_id': 'lumio.manifest_url', 'setting_type': 'string', 'setting_default': ''},
+{'setting_id': 'lumio.title_filter', 'setting_type': 'boolean', 'setting_default': 'false'},
+{'setting_id': 'check.lumio', 'setting_type': 'boolean', 'setting_default': 'false'},
+{'setting_id': 'provider.lumio_highlight', 'setting_type': 'string', 'setting_default': 'FF0055A4'},
 #=========+========== Folders
 {'setting_id': 'provider.folders', 'setting_type': 'boolean', 'setting_default': 'false'},
 {'setting_id': 'folders.title_filter', 'setting_type': 'boolean', 'setting_default': 'true'},
